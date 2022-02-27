@@ -11,10 +11,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
-class FirstActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_first)
+        setContentView(R.layout.activity_home)
 
         val colorDrawable = ColorDrawable(Color.parseColor("#0F9D58"))
         supportActionBar?.setBackgroundDrawable(colorDrawable)
