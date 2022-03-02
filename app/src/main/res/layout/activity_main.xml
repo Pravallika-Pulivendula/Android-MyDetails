@@ -6,7 +6,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:backgroundTint="@color/white"
-    android:padding="16dp"
+    android:padding="@dimen/dimen_16dp"
     >
 
     <TextView
@@ -14,10 +14,10 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/your_details"
-        android:textColor="#0F9D58"
+        android:textColor="@color/green"
         android:textStyle="bold"
-        android:textSize="25dp"
-        android:layout_marginBottom="15dp"/>
+        android:textSize="@dimen/dimen_20sp"
+        android:layout_marginBottom="@dimen/dimen_15dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,7 +26,7 @@
         android:orientation="horizontal"
         android:background="@drawable/rounded_border_edittext"
         android:weightSum="1"
-        android:padding="10dp">
+        android:padding="@dimen/dimen_10dp">
 
         <TextView
             android:id="@+id/nameTV"
@@ -35,7 +35,7 @@
             android:layout_weight="0.45"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
-            android:textSize="20dip" />
+            android:textSize="@dimen/dimen_20sp" />
 
         <TextView
             android:id="@+id/ageTV"
@@ -44,7 +44,7 @@
             android:layout_weight="0.55"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
-            android:textSize="20dip" />
+            android:textSize="@dimen/dimen_20sp" />
     </LinearLayout>
 
 
@@ -54,8 +54,8 @@
         android:layout_gravity="center"
         android:background="@drawable/rounded_border_edittext"
         android:orientation="horizontal"
-        android:layout_marginTop="15dp"
-        android:padding="10dp">
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:padding="@dimen/dimen_10dp">
 
         <TextView
             android:id="@+id/bioTV"
@@ -64,7 +64,7 @@
             android:layout_weight="0.45"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
-            android:textSize="20dip" />
+            android:textSize="@dimen/dimen_20sp" />
 
         <TextView
             android:id="@+id/phoneNumberTV"
@@ -73,7 +73,7 @@
             android:layout_weight="0.55"
             android:textAlignment="viewStart"
             android:textColor="@color/black"
-            android:textSize="20dip" />
+            android:textSize="@dimen/dimen_20sp" />
     </LinearLayout>
 
 </LinearLayout>
