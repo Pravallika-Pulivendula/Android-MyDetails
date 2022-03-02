@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 class HomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        setContentView(R.layout.activity_first)
 
         val colorDrawable = ColorDrawable(Color.parseColor("#0F9D58"))
         supportActionBar?.setBackgroundDrawable(colorDrawable)
@@ -27,34 +27,47 @@ class HomeActivity : AppCompatActivity() {
 
         submitButton.setOnClickListener() {
             val intent = Intent(this, MainActivity::class.java)
-            when {
-                TextUtils.isEmpty(firstName.text) or TextUtils.isEmpty(age.text) or TextUtils.isEmpty(
-                    bio.text
-                ) or TextUtils.isEmpty(phoneNumber.text) -> {
-                    Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
-                }
-                Integer.parseInt(age.text.toString()) > 120 -> {
-                    Toast.makeText(
-                        this,
-                        "Not a valid age. Max limit - 120",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                phoneNumber.length() < 10 -> {
-                    Toast.makeText(
-                        this,
-                        "Phone Number should contain 10 digits",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                else -> {
-                    intent.putExtra(FIRST_NAME, firstName.text.toString())
-                    intent.putExtra(AGE, age.text.toString())
-                    intent.putExtra(BIO, bio.text.toString())
-                    intent.putExtra(PHONENUMBER, phoneNumber.text.toString())
-                    startActivity(intent);
-                }
+            if (isInputValid(firstName, age, bio, phoneNumber)) {
+                intent.putExtra(FIRST_NAME, firstName.text.toString())
+                intent.putExtra(AGE, age.text.toString())
+                intent.putExtra(BIO, bio.text.toString())
+                intent.putExtra(PHONENUMBER, phoneNumber.text.toString())
+                startActivity(intent);
             }
         }
+    }
+
+    private fun isInputValid(
+        firstName: EditText,
+        age: EditText,
+        bio: EditText,
+        phoneNumber: EditText
+    ): Boolean {
+        when {
+            TextUtils.isEmpty(firstName.text) or TextUtils.isEmpty(age.text) or TextUtils.isEmpty(
+                bio.text
+            ) or TextUtils.isEmpty(phoneNumber.text) -> {
+                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
+                return false
+            }
+            Integer.parseInt(age.text.toString()) > 120 -> {
+                Toast.makeText(
+                    this,
+                    "Not a valid age. Max limit - 120",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return false
+            }
+            phoneNumber.length() < 10 -> {
+                Toast.makeText(
+                    this,
+                    "Phone Number should contain 10 digits",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return false
+            }
+
+        }
+        return true
     }
 }
