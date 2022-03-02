@@ -1,8 +1,6 @@
 package com.everest.mydetails
 
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.Button
@@ -16,9 +14,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_first)
 
-        val colorDrawable = ColorDrawable(Color.parseColor("#0F9D58"))
-        supportActionBar?.setBackgroundDrawable(colorDrawable)
-
         val submitButton = findViewById<Button>(R.id.submitButton)
         val firstName = findViewById<EditText>(R.id.firstNameET)
         val age = findViewById<EditText>(R.id.ageET)
@@ -28,13 +23,23 @@ class HomeActivity : AppCompatActivity() {
         submitButton.setOnClickListener() {
             val intent = Intent(this, MainActivity::class.java)
             if (isInputValid(firstName, age, bio, phoneNumber)) {
-                intent.putExtra(FIRST_NAME, firstName.text.toString())
-                intent.putExtra(AGE, age.text.toString())
-                intent.putExtra(BIO, bio.text.toString())
-                intent.putExtra(PHONENUMBER, phoneNumber.text.toString())
+                putExtras(intent, firstName, age, bio, phoneNumber)
                 startActivity(intent);
             }
         }
+    }
+
+    private fun putExtras(
+        intent: Intent,
+        firstName: EditText,
+        age: EditText,
+        bio: EditText,
+        phoneNumber: EditText
+    ) {
+        intent.putExtra(FIRST_NAME, firstName.text.toString())
+        intent.putExtra(AGE, age.text.toString())
+        intent.putExtra(BIO, bio.text.toString())
+        intent.putExtra(PHONENUMBER, phoneNumber.text.toString())
     }
 
     private fun isInputValid(
@@ -43,31 +48,53 @@ class HomeActivity : AppCompatActivity() {
         bio: EditText,
         phoneNumber: EditText
     ): Boolean {
-        when {
-            TextUtils.isEmpty(firstName.text) or TextUtils.isEmpty(age.text) or TextUtils.isEmpty(
-                bio.text
-            ) or TextUtils.isEmpty(phoneNumber.text) -> {
-                Toast.makeText(this, "All fields are required", Toast.LENGTH_SHORT).show();
-                return false
-            }
-            Integer.parseInt(age.text.toString()) > 120 -> {
-                Toast.makeText(
-                    this,
-                    "Not a valid age. Max limit - 120",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return false
-            }
-            phoneNumber.length() < 10 -> {
-                Toast.makeText(
-                    this,
-                    "Phone Number should contain 10 digits",
-                    Toast.LENGTH_SHORT
-                ).show()
-                return false
-            }
+        if (isDataFilled(
+                firstName,
+                age,
+                bio,
+                phoneNumber
+            ) && isEmailValid(age) && isPhoneNumberValid(phoneNumber)
+        ) {
+            return true
+        }
+        return false
+    }
 
+
+    private fun isDataFilled(
+        firstName: EditText,
+        age: EditText,
+        bio: EditText,
+        phoneNumber: EditText
+    ): Boolean {
+        if (TextUtils.isEmpty(firstName.text) or TextUtils.isEmpty(age.text) or TextUtils.isEmpty(
+                bio.text
+            ) or TextUtils.isEmpty(phoneNumber.text)
+        ) {
+            getToastMessage(ALL_FIELDS_REQUIRED_MESSAGE)
+            return false
         }
         return true
+    }
+
+    private fun isEmailValid(age: EditText): Boolean {
+        if (Integer.parseInt(age.text.toString()) > 120) {
+            getToastMessage(AGE_TOAST_MESSAGE)
+            return false
+        }
+        return true
+    }
+
+
+    private fun isPhoneNumberValid(phoneNumber: EditText): Boolean {
+        if (phoneNumber.length() != 10) {
+            getToastMessage(PHONE_NUMBER_TOAST_MESSAGE)
+            return false
+        }
+        return true
+    }
+
+    private fun getToastMessage(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
