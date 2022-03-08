@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">My Details</string>
+    <string name="hello">Hello</string>
+    <string name="hello_first">Hello First!</string>
+    <string name="my_details">Enter your Details</string>
+    <string name="submit">Submit</string>
+    <string name="phonenumber">PhoneNumber</string>
+    <string name="bio">Bio</string>
+    <string name="age">Age</string>
+    <string name="your_details">Your details!!</string>
+    <string name="name">Name</string>
+    <string name="phonenumber_toast_message">Phone number shouldnt be less than 10.</string>
+    <string name="age_toast_message">Not a valid age. Max limit-120</string>
+    <string name="fields_required_toast_message">All fileds are required.</string>
+</resources>

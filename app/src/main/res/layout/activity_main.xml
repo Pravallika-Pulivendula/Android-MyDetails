@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:backgroundTint="@color/white"
+    android:padding="@dimen/dimen_16dp"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/your_details"
+        android:textColor="@color/green"
+        android:textStyle="bold"
+        android:textSize="@dimen/dimen_20sp"
+        android:layout_marginBottom="@dimen/dimen_15dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_border_edittext"
+        android:weightSum="1"
+        android:padding="@dimen/dimen_10dp">
+
+        <TextView
+            android:id="@+id/nameTV"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.45"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_20sp" />
+
+        <TextView
+            android:id="@+id/ageTV"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.55"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_border_edittext"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dimen_15dp"
+        android:padding="@dimen/dimen_10dp">
+
+        <TextView
+            android:id="@+id/bioTV"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.45"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_20sp" />
+
+        <TextView
+            android:id="@+id/phoneNumberTV"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.55"
+            android:textAlignment="viewStart"
+            android:textColor="@color/black"
+            android:textSize="@dimen/dimen_20sp" />
+    </LinearLayout>
+
+</LinearLayout>
