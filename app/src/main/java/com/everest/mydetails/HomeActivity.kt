@@ -4,12 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 
 class HomeActivity : AppCompatActivity() {
-    var submitButton: Button = findViewById(R.id.submitButton)
     var validator: Validator = Validator()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,13 +18,17 @@ class HomeActivity : AppCompatActivity() {
         val age = findViewById<EditText>(R.id.ageET)
         val bio = findViewById<EditText>(R.id.bioET)
         val phoneNumber = findViewById<EditText>(R.id.phoneNumberET)
+        val submitButton: Button = findViewById(R.id.submitButton)
 
-        submitData(
-            firstName.text.toString(),
-            Integer.parseInt(age.text.toString()),
-            bio.text.toString(),
-            phoneNumber.text.toString()
-        )
+        submitButton.setOnClickListener {
+            submitData(
+                firstName.text.toString(),
+                Integer.parseInt(age.text.toString()),
+                bio.text.toString(),
+                phoneNumber.text.toString()
+            )
+        }
+
     }
 
     private fun submitData(
@@ -35,19 +37,24 @@ class HomeActivity : AppCompatActivity() {
         bio: String,
         phoneNumber: String
     ) {
-        submitButton.setOnClickListener() {
-            val intent = Intent(this, MainActivity::class.java)
-            if (validator.isInputValid(firstName, age, bio, phoneNumber)) {
-                intent.putExtra(FIRST_NAME, firstName)
-                intent.putExtra(AGE, age.toString())
-                intent.putExtra(BIO, bio)
-                intent.putExtra(PHONENUMBER, phoneNumber)
-                startActivity(intent);
-            }
+        val intent = Intent(this, MainActivity::class.java)
+        if (validator.isInputValid(
+                firstName,
+                age,
+                bio,
+                phoneNumber,
+                this
+            )
+        ) {
+            intent.putExtra(
+                USER_DETAILS, UserDetails(
+                    firstName,
+                    age,
+                    bio,
+                    phoneNumber
+                )
+            )
+            startActivity(intent);
         }
-    }
-
-    fun getToastMessage(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }

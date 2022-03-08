@@ -14,10 +14,13 @@ class MainActivity : AppCompatActivity() {
         val bioTV = findViewById<TextView>(R.id.bioTV)
         val phoneNumberTV = findViewById<TextView>(R.id.phoneNumberTV)
 
-        val firstName = "Name: " + intent.getStringExtra(FIRST_NAME)
-        val age = "Age: " + intent.getStringExtra(AGE)
-        val bio = "Bio: " + intent.getStringExtra(BIO)
-        val phoneNumber = "Phno: " + intent.getStringExtra(PHONENUMBER)
+        val data: Bundle? = intent.extras
+        val userDetails: UserDetails? = data?.getParcelable(USER_DETAILS);
+
+        val firstName = "Name: " + userDetails?.firstName
+        val age = "Age: " + userDetails?.age
+        val bio = "Bio: " + userDetails?.bio
+        val phoneNumber = "Phno: " + userDetails?.phoneNumber
 
         nameTV.text = firstName
         ageTV.text = age
